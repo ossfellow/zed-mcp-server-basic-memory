@@ -1,0 +1,18 @@
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: Release Zed Extension
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: huacnlee/zed-extension-action@v1
+        with:
+          extension-name: mcp-server-basic-memory
+          # extension-path: extensions/${{ extension-name }}
+          push-to: ossfellow/zed-mcp-server-basic-memory
+        env:
+          # the personal access token should have "repo" & "workflow" scopes
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
