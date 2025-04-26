@@ -87,4 +87,3 @@ jobs:
     with:
       base64-subjects: "${{ needs.build.outputs.hashes }}"
       upload-assets: true # Upload to the release
-      private-repository: true # Allow provenance for private repos
