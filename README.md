@@ -1,6 +1,6 @@
-# Basic Memory MCP Server Extension for Zed
+# Basic Memory MCP Server Extension for Zed Editor
 
-This extension integrates [Basic Memory](https://github.com/basicmachines-co/basic-memory) as a context server for [Zed's](https://zed.dev) [Assistant](https://zed.dev/docs/assistant/assistant).
+This extension integrates [Basic Memory](https://github.com/basicmachines-co/basic-memory) as a context server for [Zed Editor's](https://zed.dev) [Assistant](https://zed.dev/docs/assistant/assistant).
 
 Basic Memory lets you build persistent knowledge through natural conversations with Large Language Models, while keeping everything in simple Markdown files on your computer.
 
