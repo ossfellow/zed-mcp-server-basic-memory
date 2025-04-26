@@ -11,3 +11,4 @@ target/
 
 # Helper files
 git-push.sh
+*.wasm
