@@ -1,0 +1,43 @@
+name: Publish to Zed Extensions
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (e.g. v0.0.1)"
+        required: true
+        type: string
+
+jobs:
+  publish:
+    name: Publish to Zed Extensions
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # Verify the version matches extension.toml
+      - name: Verify version
+        run: |
+          VERSION=$(grep '^version = ' extension.toml | cut -d'"' -f2)
+          if [ "v$VERSION" != "${{ inputs.version }}" ]; then
+            echo "Version mismatch: v$VERSION != ${{ inputs.version }}"
+            exit 1
+          fi
+
+      # Build WASM
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip1
+
+      - name: Build
+        run: cargo build --verbose --target wasm32-wasip1 --release
+
+      # Uncomment when ready to publish to Zed extensions
+      # - uses: huacnlee/zed-extension-action@v1
+      #   with:
+      #     extension-name: mcp-server-basic-memory
+      #     push-to: zed-industries/extensions
+      #   env:
+      #     COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
